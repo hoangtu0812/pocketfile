@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: pocketfile_db
+    environment:
+      POSTGRES_DB: pocketfile
+      POSTGRES_USER: pocketfile
+      POSTGRES_PASSWORD: pocketfile_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - pocketfile_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pocketfile_backend
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: pocketfile
+      DB_USER: pocketfile
+      DB_PASSWORD: pocketfile_password
+      JWT_SECRET: your-secret-jwt-key-change-in-production
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - ./backend/uploads:/app/uploads
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+    networks:
+      - pocketfile_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pocketfile_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - pocketfile_network
+
+networks:
+  pocketfile_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+

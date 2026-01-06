@@ -1,0 +1,72 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #4f46e5, #111827);
+  padding: 24px 16px;
+}
+
+.login-card {
+  background: rgba(249, 250, 251, 0.98);
+  padding: 36px 32px 32px;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.6);
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #111827;
+  margin-bottom: 10px;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4b5563;
+}
+
+.register-note {
+  text-align: center;
+  color: #28a745;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #d4edda;
+  border-radius: 4px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.toggle-form {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.link-button:hover {
+  color: #0056b3;
+}
+
