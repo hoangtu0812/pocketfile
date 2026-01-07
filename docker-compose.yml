@@ -14,9 +14,7 @@ services:
       - pocketfile_network
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ${REGISTRY}/pocketfile-backend:${TAG}
     container_name: pocketfile_backend
     environment:
       NODE_ENV: production
@@ -26,7 +24,7 @@ services:
       DB_NAME: pocketfile
       DB_USER: pocketfile
       DB_PASSWORD: pocketfile_password
-      JWT_SECRET: your-secret-jwt-key-change-in-production
+      JWT_SECRET: ${JWT_SECRET}
       UPLOAD_DIR: /app/uploads
     volumes:
       - uploads_data:/app/uploads
@@ -38,9 +36,7 @@ services:
       - pocketfile_network
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ${REGISTRY}/pocketfile-frontend:${TAG}
     container_name: pocketfile_frontend
     ports:
       - "3000:80"
