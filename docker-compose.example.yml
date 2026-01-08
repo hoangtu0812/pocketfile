@@ -1,3 +1,6 @@
+# File mẫu với biến môi trường (linh hoạt hơn)
+# Đổi tên thành docker-compose.yml nếu muốn dùng biến
+
 services:
   postgres:
     image: postgres:15-alpine
@@ -14,7 +17,7 @@ services:
       - pocketfile_network
 
   backend:
-    image: hoangtu0812/pocketfile-backend:v1.0.0
+    image: ${REGISTRY:-hoangtu0812}/pocketfile-backend:${TAG:-latest}
     container_name: pocketfile_backend
     environment:
       NODE_ENV: production
@@ -29,14 +32,14 @@ services:
     volumes:
       - uploads_data:/app/uploads
     ports:
-      - "3002:3001"
+      - "3001:3001"
     depends_on:
       - postgres
     networks:
       - pocketfile_network
 
   frontend:
-    image: hoangtu0812/pocketfile-frontend:v1.0.0
+    image: ${REGISTRY:-hoangtu0812}/pocketfile-frontend:${TAG:-latest}
     container_name: pocketfile_frontend
     ports:
       - "3000:80"

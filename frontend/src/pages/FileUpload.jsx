@@ -4,7 +4,7 @@ import axios from 'axios'
 import Navbar from '../components/Navbar'
 import './FileUpload.css'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:3001/api')
 
 const FileUpload = () => {
   const [file, setFile] = useState(null)

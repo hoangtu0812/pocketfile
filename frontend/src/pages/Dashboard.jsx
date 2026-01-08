@@ -3,7 +3,7 @@ import axios from 'axios'
 import Navbar from '../components/Navbar'
 import './Dashboard.css'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:3001/api')
 
 const Dashboard = () => {
   const [files, setFiles] = useState([])
